@@ -1,25 +1,43 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import knightimg from "./knightimg.jpg";
 
-function App() {
+const App = () => {
+  const col = [0, 1, 2, 3, 4, 5, 6, 7];
+  const row = [0, 1, 2, 3, 4, 5];
+  const [rows, setRow] = useState(0);
+  const [cols, setCol] = useState(1);
+  const
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {row.map((i) => {
+        return (
+          <div style={{ display: "flex", flexDirection: "row" }}>
+            {col.map((j) => {
+              return (
+                <div
+                  style={{
+                    border: "1px solid black",
+                    width: "80px",
+                    height: "80px",
+                    backgroundColor: (i + j) % 2 === 0 ? "white" : "grey",
+                  }}
+                  onClick={() => {
+                    setRow(i);
+                    setCol(j);
+                  }}
+                >
+                  {i === rows && j === cols && (
+                    <img src={knightimg} width="80px" height="80px" />
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        );
+      })}
+    </>
   );
-}
+};
 
 export default App;
